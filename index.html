@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculator - ES6+ TypeScript</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: linear-gradient(135deg, #8B0FFF 0%, #FFD60A 50%, #8B0FFF 100%);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .calculator {
+      background: linear-gradient(135deg, #FFFFFF 0%, #FFF9E6 100%);
+      border-radius: 20px;
+      box-shadow: 0 20px 50px rgba(139, 15, 255, 0.3);
+      padding: 25px;
+      width: 360px;
+      border: 3px solid #8B0FFF;
+    }
+
+    #display {
+      background: linear-gradient(135deg, #8B0FFF 0%, #6A0DAD 100%);
+      color: #FFD60A;
+      font-size: 3em;
+      padding: 20px;
+      border-radius: 12px;
+      text-align: right;
+      margin-bottom: 20px;
+      word-wrap: break-word;
+      word-break: break-all;
+      min-height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      font-weight: bold;
+      box-shadow: 0 8px 16px rgba(139, 15, 255, 0.2);
+      animation: glow 2s ease-in-out infinite;
+    }
+
+    @keyframes glow {
+      0%, 100% {
+        box-shadow: 0 8px 16px rgba(139, 15, 255, 0.2);
+      }
+      50% {
+        box-shadow: 0 12px 24px rgba(139, 15, 255, 0.4);
+      }
+    }
+
+    .button-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+
+    button {
+      padding: 18px;
+      font-size: 1.4em;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      background: white;
+      color: #333;
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      font-weight: 600;
+      box-shadow: 0 4px 8px rgba(139, 15, 255, 0.1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    button:hover {
+      background: #FFD60A;
+      transform: translateY(-4px) scale(1.05);
+      box-shadow: 0 8px 16px rgba(139, 15, 255, 0.3);
+    }
+
+    button:active {
+      transform: scale(0.95);
+    }
+
+    .operator {
+      background: linear-gradient(135deg, #8B0FFF 0%, #7B0FDF 100%);
+      color: white;
+    }
+
+    .operator:hover {
+      background: linear-gradient(135deg, #6A0DAD 0%, #5A0DAD 100%);
+    }
+
+    .equals {
+      background: linear-gradient(135deg, #FFD60A 0%, #FFC900 100%);
+      color: #333;
+      grid-column: span 2;
+      font-size: 1.6em;
+    }
+
+    .equals:hover {
+      background: linear-gradient(135deg, #FFC900 0%, #FFB700 100%);
+    }
+
+    .clear {
+      background: linear-gradient(135deg, #8B0FFF 0%, #7B0FDF 100%);
+      color: white;
+      grid-column: span 2;
+    }
+
+    .clear:hover {
+      background: linear-gradient(135deg, #6A0DAD 0%, #5A0DAD 100%);
+    }
+
+    .percent {
+      background: linear-gradient(135deg, #FFD60A 0%, #FFC900 100%);
+      color: #333;
+    }
+
+    .percent:hover {
+      background: linear-gradient(135deg, #FFC900 0%, #FFB700 100%);
+    }
+  </style>
+</head>
+<body>
+  <div class="calculator">
+    <div id="display">0</div>
+    <div class="button-grid">
+      <button class="clear" onclick="calculator.clear()">C</button>
+      <button class="operator" onclick="calculator.appendOperator('/')"> /</button>
+      <button class="operator" onclick="calculator.appendOperator('*')">*</button>
+      <button class="percent" onclick="calculator.percentage()">%</button>
+
+      <button onclick="calculator.appendNumber('7')">7</button>
+      <button onclick="calculator.appendNumber('8')">8</button>
+      <button onclick="calculator.appendNumber('9')">9</button>
+      <button class="operator" onclick="calculator.appendOperator('-')">-</button>
+
+      <button onclick="calculator.appendNumber('4')">4</button>
+      <button onclick="calculator.appendNumber('5')">5</button>
+      <button onclick="calculator.appendNumber('6')">6</button>
+      <button class="operator" onclick="calculator.appendOperator('+')">+</button>
+
+      <button onclick="calculator.appendNumber('1')">1</button>
+      <button onclick="calculator.appendNumber('2')">2</button>
+      <button onclick="calculator.appendNumber('3')">3</button>
+      <button onclick="calculator.appendNumber('.')">.</button>
+
+      <button onclick="calculator.appendNumber('0')" style="grid-column: span 2;">0</button>
+      <button class="equals" onclick="calculator.calculate()">=</button>
+    </div>
+  </div>
+
+  <script src="calculator.js"></script>
+</body>
+</html>
